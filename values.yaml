@@ -1,0 +1,28 @@
+app:
+  image:
+    repository: registry.gitlab.com/meryemelmansouri01/pfe-tracker-gitops-app
+    tag: latest
+  replicaCount: 1
+  containerPort: 8080
+  servicePort: 80
+
+postgres:
+  image: postgres:16-alpine
+  db: appdb
+  user: appadmin
+  password: apppassword
+  port: 5432
+
+ingress:
+  enabled: true
+  className: nginx
+  host: pfe-tracker.local
+
+hpa:
+  enabled: true
+  minReplicas: 1
+  maxReplicas: 5
+  targetCPUUtilizationPercentage: 50
+
+networkPolicy:
+  enabled: true

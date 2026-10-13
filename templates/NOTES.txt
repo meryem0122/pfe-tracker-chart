@@ -1,0 +1,10 @@
+pfe-tracker déployé.
+
+Vérifier les pods :
+  kubectl get pods -n {{ .Release.Namespace }}
+
+Accès via Ingress (si activé) :
+  http://{{ .Values.ingress.host }}
+
+État du HPA :
+  kubectl get hpa -n {{ .Release.Namespace }}
